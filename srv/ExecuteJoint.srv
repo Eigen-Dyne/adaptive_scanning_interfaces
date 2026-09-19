@@ -1,0 +1,11 @@
+float64[] joint_target
+float64 planning_time
+float64 velocity_scale
+float64 acceleration_scale
+bool execute
+string pipeline_id
+string planner_id
+float64 ee_box_constraint_m
+---
+bool success
+string message

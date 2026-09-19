@@ -1,0 +1,13 @@
+geometry_msgs/Pose[] waypoints
+adaptive_scanning_interfaces/WaypointPlannerStage[] planning_chain
+bool return_to_start
+bool enable_dither
+float64 joint_5_dither_deg
+float64 joint_6_dither_deg
+---
+bool success
+string message
+float64 fraction
+---
+float64 fraction
+string state

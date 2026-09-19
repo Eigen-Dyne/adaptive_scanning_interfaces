@@ -1,0 +1,31 @@
+geometry_msgs/PointStamped[] target_points
+geometry_msgs/Vector3Stamped[] target_normals
+string[] target_sources
+float64 angle_tolerance_rad
+float64 min_depth_m
+float64 max_depth_m
+string group_name
+string tcp_link
+float64 allowed_planning_time
+uint32 max_goal_samples
+bool execute
+bool enable_dither
+float64 joint_5_dither_deg
+float64 joint_6_dither_deg
+---
+bool success
+string message
+moveit_msgs/RobotTrajectory trajectory
+geometry_msgs/PoseStamped[] chosen_tcp_poses
+float64 total_cost
+float64 path_cost
+float64 viewpoint_cost
+uint32 roadmap_vertices
+uint32 roadmap_edges
+---
+string stage
+uint32 active_waypoint_index
+uint32 sampled_goal_states
+uint32 valid_goal_states
+uint32 roadmap_vertices
+uint32 roadmap_edges

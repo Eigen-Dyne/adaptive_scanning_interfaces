@@ -1,0 +1,25 @@
+geometry_msgs/Pose[] waypoints
+string source_frame
+string target_frame
+float64 planning_time
+float64 velocity_scale
+float64 acceleration_scale
+bool execute
+bool prefer_linear
+bool skip_failed
+int32 max_execution_replans
+---
+bool success
+string message
+int32 planned_segments
+int32 planning_skipped
+int32 executed_successfully
+int32 execution_failed
+int32 replans_triggered
+float64 total_planning_time_ms
+float64 total_execution_time_ms
+---
+int32 current_waypoint_index
+int32 total_waypoints
+string state
+string planner_id
