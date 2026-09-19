@@ -10,6 +10,8 @@ application implementation.
 - `ExecuteWaypoints`
 - `LookAtWaypoints`
 - `ParallelPlanningAndExecution`
+- `RunHandeyeCalibration`
 - `WaypointPlannerStage`
+- `RobotHardwareStatus`
 - `ExecuteJoint` service (legacy compatibility)
 Interface Definition for Adaptive Scanning

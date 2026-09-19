@@ -1,0 +1,11 @@
+string robot_name
+bool use_sim_time
+bool start_rviz
+---
+bool success
+int32 exit_code
+string message
+string result_path
+---
+string state
+uint32 elapsed_seconds
