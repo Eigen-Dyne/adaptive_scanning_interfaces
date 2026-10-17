@@ -8,6 +8,8 @@ bool execute
 bool prefer_linear
 bool skip_failed
 int32 max_execution_replans
+float64 max_joint_velocity_deg_s
+float64 motion_timeout_s
 ---
 bool success
 string message
