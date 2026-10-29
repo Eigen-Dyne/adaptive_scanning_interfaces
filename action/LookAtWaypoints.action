@@ -12,6 +12,12 @@ bool execute
 bool enable_dither
 float64 joint_5_dither_deg
 float64 joint_6_dither_deg
+float64 max_joint_velocity_deg_s
+float64 motion_timeout_s
+float64 velocity_scale
+float64 acceleration_scale
+float64 cartesian_step
+string[] planning_chain
 ---
 bool success
 string message

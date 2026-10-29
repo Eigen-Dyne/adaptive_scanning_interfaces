@@ -11,3 +11,8 @@ float32 camera_temperature
 uint8 joints_status
 uint8 controller_status
 uint8 camera_status
+
+# camera_status describes RGB/depth frame freshness independently of diagnostics.
+# Diagnostics are optional (e.g. simulation); STALE means unavailable or expired.
+bool camera_diagnostics_enabled
+uint8 camera_diagnostics_status
