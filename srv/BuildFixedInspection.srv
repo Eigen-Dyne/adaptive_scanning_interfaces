@@ -1,0 +1,45 @@
+# Fixed Milestone 1 route. Planning only; no implicit execution.
+moveit_msgs/PlanningScene scene
+string[] viewpoint_ids
+string[] joint_names
+float64[] joint_positions
+float64 velocity_scale
+float64 acceleration_scale
+float64 joint_5_dither_deg
+float64 joint_6_dither_deg
+float64 capture_dwell_s
+float64 dither_dwell_s
+# Per-call jerk cap (rad/s^3). Zero keeps the node parameter value.
+float64 jerk_limit_rad_s3
+# Optional refinement only when at least 20s of installed future remains.
+float64 refinement_budget_s
+float64 committed_time_remaining_s
+---
+bool success
+string message
+moveit_msgs/RobotTrajectory trajectory
+string[] stop_labels
+float64[] stop_arrival_times_s
+float64[] stop_departure_times_s
+uint32 full_moveit_planning_calls
+float64 planning_time_s
+float64 totg_time_s
+float64 ruckig_time_s
+float64 validation_time_s
+# Maximum per-block stretch; dwell durations are preserved.
+float64 timing_stretch_factor
+float64[] block_timing_stretch_factors
+float64 duration_s
+float64 maximum_velocity_rad_s
+float64 maximum_acceleration_rad_s2
+float64 maximum_jerk_rad_s3
+
+# Structured failed attempt; never an unreachable-viewpoint declaration.
+string failed_stop_label
+float64[] failed_start_joint_positions
+float64[] failed_goal_joint_positions
+
+uint32 edge_planning_workers
+uint32 refinement_attempts
+uint32 refinement_accepted
+float64 refinement_time_s

@@ -1,0 +1,44 @@
+# Milestone 1 only: no trajectory planning or motion execution.
+# Each call replaces the dynamic viewpoint set; IDs remain stable within a task.
+string[] viewpoint_ids
+geometry_msgs/PoseStamped[] camera_poses
+# Optional grouped alternative camera poses per viewpoint; empty means one pose each.
+uint32[] pose_counts
+# Zero keeps all filtered states; nonzero bounds pooled states for grouped inputs.
+uint32 max_candidates_per_viewpoint
+# Complete scene snapshot, including measured robot state. Diff scenes rejected.
+moveit_msgs/PlanningScene scene
+# When true, the settings below replace the node parameters for this call only.
+# When false they are ignored. Values come from the fleet and scan configuration.
+bool use_request_settings
+float64 velocity_scale
+float64 screening_step_rad
+float64 joint_5_dither_deg
+float64 joint_6_dither_deg
+float64 candidate_clearance_m
+---
+bool success
+bool complete
+string message
+string[] route_viewpoint_ids
+uint32[] selected_candidate_indices
+string[] joint_names
+# Row-major: len(route_viewpoint_ids) rows, len(joint_names) columns.
+float64[] selected_joint_positions
+float64[] edge_costs
+float64 total_cost
+string[] unassigned_viewpoint_ids
+uint32[] raw_candidate_counts
+uint32[] valid_candidate_counts
+uint32 rejected_bounds
+uint32 rejected_collisions
+uint32 rejected_fk
+uint32 screened_edges
+uint32 rejected_edges
+float64 initial_route_compute_time_s
+# Filtered analytical candidates in request viewpoint order, then branch order.
+# Counts are valid_candidate_counts; each branch has len(joint_names) values.
+# These are endpoint states, not executable edges.
+float64[] candidate_joint_positions
+float64[] joint_speed_limits_scaled
+float64[] joint_position_ranges

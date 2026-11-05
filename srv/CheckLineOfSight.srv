@@ -1,0 +1,9 @@
+geometry_msgs/PointStamped target_point
+geometry_msgs/PointStamped tcp_point
+float64 clearance_m
+float64 target_ignore_m
+float64 tcp_ignore_m
+---
+bool clear
+uint32 blocking_point_count
+string reason

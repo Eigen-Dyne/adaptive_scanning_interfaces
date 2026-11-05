@@ -17,6 +17,9 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/WaypointPlannerStage.msg"
   "msg/RobotHardwareStatus.msg"
   "srv/ExecuteJoint.srv"
+  "srv/CheckLineOfSight.srv"
+  "srv/PlanInspectionRoute.srv"
+  "srv/BuildFixedInspection.srv"
   DEPENDENCIES action_msgs builtin_interfaces geometry_msgs moveit_msgs
 )
 
