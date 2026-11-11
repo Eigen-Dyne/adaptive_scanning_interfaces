@@ -14,6 +14,14 @@ float64 jerk_limit_rad_s3
 # Optional refinement only when at least 20s of installed future remains.
 float64 refinement_budget_s
 float64 committed_time_remaining_s
+# Step 5 scan-time reduction. When true, a viewpoint is a pass-through point: no capture dwell and no
+# dither stops (the dwell fields are ignored). Default false keeps the original stop-and-dwell behaviour.
+bool continuous_motion
+# continuous_motion only. Path tolerance (rad) for blending the chunk's viewpoints into one path; zero uses 0.002.
+float64 blend_tolerance_rad
+# continuous_motion only. The blended path must pass every viewpoint within this joint-space distance (rad);
+# zero uses 0.0025. A chunk that misses is rejected so the caller can plan it with stops instead.
+float64 viewpoint_tolerance_rad
 ---
 bool success
 string message
@@ -21,6 +29,10 @@ moveit_msgs/RobotTrajectory trajectory
 string[] stop_labels
 float64[] stop_arrival_times_s
 float64[] stop_departure_times_s
+# Filled only when continuous_motion is true: time at which each viewpoint is reached, in request order.
+float64[] viewpoint_pass_times_s
+# continuous_motion only: largest joint-space distance (rad) by which the blended path misses a viewpoint.
+float64 max_viewpoint_miss_rad
 uint32 full_moveit_planning_calls
 float64 planning_time_s
 float64 totg_time_s
