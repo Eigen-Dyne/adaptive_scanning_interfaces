@@ -1,0 +1,13 @@
+# Cheap replacement for fetching the whole planning scene over DDS.
+# Request is empty. The robot node reads the scene inside the robot container.
+---
+bool success
+string message
+# Hash of world geometry, allowed collision matrix, fixed-frame transforms, link padding/scale
+# and attached objects. It ignores the robot's joint state. Equal fingerprints mean the
+# planning geometry did not change; it is for change detection, not security.
+string fingerprint
+uint32 object_count
+# Current robot joint state (all joints in the scene).
+string[] joint_names
+float64[] joint_positions

@@ -8,6 +8,10 @@ uint32[] pose_counts
 uint32 max_candidates_per_viewpoint
 # Complete scene snapshot, including measured robot state. Diff scenes rejected.
 moveit_msgs/PlanningScene scene
+# When true, `scene` is ignored and the robot node reads the planning scene itself,
+# inside the robot container (no scene crosses containers). Default false keeps the
+# caller-supplied snapshot behaviour.
+bool use_local_scene
 # When true, the settings below replace the node parameters for this call only.
 # When false they are ignored. Values come from the fleet and scan configuration.
 bool use_request_settings
@@ -42,3 +46,5 @@ float64 initial_route_compute_time_s
 float64[] candidate_joint_positions
 float64[] joint_speed_limits_scaled
 float64[] joint_position_ranges
+# Fingerprint of the planning geometry this answer was computed in. Empty if unavailable.
+string scene_fingerprint

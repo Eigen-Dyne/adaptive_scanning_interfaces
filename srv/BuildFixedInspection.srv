@@ -1,5 +1,10 @@
 # Fixed Milestone 1 route. Planning only; no implicit execution.
 moveit_msgs/PlanningScene scene
+# When true, `scene` is ignored and the robot node reads the planning scene itself, inside the
+# robot container. The measured/committed start state is then given by start_joint_positions
+# (same order as joint_names), because the scene it reads only holds the live arm state.
+bool use_local_scene
+float64[] start_joint_positions
 string[] viewpoint_ids
 string[] joint_names
 float64[] joint_positions
@@ -55,3 +60,5 @@ uint32 edge_planning_workers
 uint32 refinement_attempts
 uint32 refinement_accepted
 float64 refinement_time_s
+# Fingerprint of the planning geometry used. Empty if unavailable.
+string scene_fingerprint

@@ -1,0 +1,21 @@
+# Batched line-of-sight filter against a saved TSDF point cloud (binary PLY), run in the robot
+# container. It replaces one CheckLineOfSight call per candidate pose.
+# Empty cloud_path means "filter off": every candidate is reported clear and the response says so.
+# A cloud_path that cannot be read is a failure (success=false), never a silent pass.
+string cloud_path
+# Frame of the points below. The saved cloud must already be in this frame.
+string frame_id
+# One segment per candidate: from the camera/TCP point to the target point.
+geometry_msgs/Point[] target_points
+geometry_msgs/Point[] tcp_points
+float64 clearance_m
+float64 target_ignore_m
+float64 tcp_ignore_m
+---
+bool success
+string message
+# False when no cloud was supplied: all candidates are then reported clear.
+bool filter_active
+uint32 cloud_point_count
+bool[] clear
+uint32[] blocking_point_count

@@ -1,0 +1,81 @@
+# Receding-horizon inspection planner running in the robot container.
+# plan_only=true samples camera poses, applies the line-of-sight filter, plans and completes the route and
+# returns it without moving the arm. plan_only=false then also runs the rolling executor: it plans validated
+# chunks, sends them to the joint trajectory controller and returns the execution report.
+# Targets, one entry per viewpoint; all points and normals are in frame_id.
+string[] target_ids
+geometry_msgs/Point[] target_points
+geometry_msgs/Vector3[] target_normals
+string frame_id
+# Link the pose samples are expressed for (default tcp_link) and the camera optical frame.
+string inspection_link
+string camera_link
+float64 min_depth_m
+float64 max_depth_m
+float64 angle_tolerance_rad
+uint32 max_pose_samples
+uint32 max_candidates_per_viewpoint
+# Route planning settings sent with every request.
+float64 velocity_scale
+float64 screening_step_rad
+float64 joint_5_dither_deg
+float64 joint_6_dither_deg
+float64 candidate_clearance_m
+# Line-of-sight filter. An empty path means the filter is off and the result says so.
+string los_cloud_path
+float64 los_clearance_m
+float64 los_target_ignore_m
+float64 los_tcp_ignore_m
+bool plan_only
+# Execution settings (plan_only=false). Zero values keep the defaults noted.
+float64 acceleration_scale
+float64 capture_dwell_s
+float64 dither_dwell_s
+# Per-call jerk cap (rad/s^3); zero keeps the node parameter.
+float64 jerk_limit_rad_s3
+bool continuous_motion
+# Zero keeps 0.002 / 0.0025 / 0.04 rad.
+float64 blend_tolerance_rad
+float64 viewpoint_tolerance_rad
+float64 pass_tolerance_rad
+# Zero keeps 2 viewpoints per chunk, 5 s minimum and 30 s target committed buffer.
+uint32 batch_viewpoints
+float64 min_committed_time_s
+float64 target_committed_time_s
+# Run the optional trajectory refinement (budget 0.2 s per chunk) and scene-scoped route recovery.
+bool enable_refinement
+bool enable_recovery
+# Execution stops when no message arrives on ~/heartbeat for this long. Zero disables the check.
+float64 heartbeat_timeout_s
+# Directory the planner may write its report into (created if missing). Empty means no files.
+string output_dir
+---
+bool success
+string message
+# Route in visiting order, one joint state per viewpoint (joint_names order, row by row).
+string[] route_viewpoint_ids
+string[] joint_names
+float64[] selected_joint_positions
+# Targets that had no line-of-sight camera pose: reported, never dropped silently.
+string[] unresolved_los_ids
+# Targets the route planner could not assign an IK state to.
+string[] unassigned_ids
+# Viewpoints appended by nearest-state completion after the screened route.
+string[] appended_ids
+bool los_filter_active
+string los_message
+uint32 los_candidates
+uint32 los_blocked
+string report_path
+# Execution (plan_only=false): the executor's report and whether every selected viewpoint was visited.
+bool executed
+string execution_report_json
+uint32 viewpoints_visited
+---
+# Stage name: starting, arm_state, camera_mount, pose_sampling, line_of_sight, route_planning, completing, done.
+string stage
+uint32 targets_total
+float64 elapsed_s
+# Execution progress.
+uint32 viewpoints_visited
+float64 committed_remaining_s

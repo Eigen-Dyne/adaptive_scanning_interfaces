@@ -13,13 +13,15 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "action/ExecuteWaypoints.action"
   "action/LookAtWaypoints.action"
   "action/ParallelPlanningAndExecution.action"
+  "action/PlanInspection.action"
   "action/RunHandeyeCalibration.action"
   "msg/WaypointPlannerStage.msg"
   "msg/RobotHardwareStatus.msg"
   "srv/ExecuteJoint.srv"
-  "srv/CheckLineOfSight.srv"
+  "srv/CheckLineOfSightBatch.srv"
   "srv/PlanInspectionRoute.srv"
   "srv/BuildFixedInspection.srv"
+  "srv/GetSceneFingerprint.srv"
   DEPENDENCIES action_msgs builtin_interfaces geometry_msgs moveit_msgs
 )
 
