@@ -10,6 +10,9 @@ string frame_id
 # Link the pose samples are expressed for (default tcp_link) and the camera optical frame.
 string inspection_link
 string camera_link
+# Optional frame to aim at the target instead of camera_link (e.g. scanner_optical_frame). Poses are built for this
+# frame, then converted to the equivalent camera_link pose for IK. Empty aims camera_link as before.
+string aim_link
 float64 min_depth_m
 float64 max_depth_m
 float64 angle_tolerance_rad
